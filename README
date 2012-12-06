@@ -1,4 +1,11 @@
-This is a ROS version of the OpenTLD tracker.
+This is a ROS version of the OpenTLD tracker originally made by Ronan Chauvin.
+IntRoLab
+http://introlab.3it.usherbrooke.ca
+Université de Sherbrooke, Québec, Canada
+
+Like OpenTLD, ROS_OpenTLD is published under the terms of the GNU General Public License.
+
+For my own project I used this code to track an object with an flying platform. The platform used is an ARdrone 2.0 therefor the launch files are edited to the topics which the drone_autonomy publishes.
 
 OpenTLD is a C++ implementation of TLD Predator (Tracking. Learning and Detection) implemented by the AIT (Austrian Institute of Technology) that was originally published in MATLAB by Zdenek Kalal. OpenTLD is used for tracking objects in video streams. It doesn't need any training data and is also able to load predefined models (http://gnebehay.github.com/OpenTLD/).
 
@@ -17,8 +24,4 @@ The ROS implementation consists of two nodes : the tracker node which use the op
 
 In the two launch files, you can configure the input video stream. In the tracker launch file, you can configure the bounding box source, the default bounding box if there is one, the model that you may want to load and its path, the automatic face detection by the OpenCV cascade classifier and some others parameters.
 
-Like OpenTLD, ROS_OpenTLD is published under the terms of the GNU General Public License.
 
-IntRoLab
-http://introlab.3it.usherbrooke.ca
-Université de Sherbrooke, Québec, Canada
