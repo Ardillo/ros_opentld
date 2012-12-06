@@ -5,7 +5,7 @@ Université de Sherbrooke, Québec, Canada
 
 Like OpenTLD, ROS_OpenTLD is published under the terms of the GNU General Public License.
 
-For my own project I used this code to track an object with an flying platform. The platform used is an ARdrone 2.0 therefor the launch files are edited to the topics which the drone_autonomy publishes.
+For my own project I used this code to track an object with an flying platform. The platform used is an ARdrone 2.0 therefor the launch files are edited to the topics which the ardrone_autonomy publishes.
 
 OpenTLD is a C++ implementation of TLD Predator (Tracking. Learning and Detection) implemented by the AIT (Austrian Institute of Technology) that was originally published in MATLAB by Zdenek Kalal. OpenTLD is used for tracking objects in video streams. It doesn't need any training data and is also able to load predefined models (http://gnebehay.github.com/OpenTLD/).
 
