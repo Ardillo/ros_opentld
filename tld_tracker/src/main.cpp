@@ -118,7 +118,8 @@ void Main::imageReceivedCallback(const sensor_msgs::ImageConstPtr & msg) {
 
 	try {
 		if (enc::isColor(msg->encoding))
-			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::BGR8);
+			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::RGB8); // edited by Ardillo
+			//img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::BGR8); //Original
 		else {
 			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::MONO8);
 			cv::cvtColor(img_buffer_ptr->image, img_buffer_ptr->image, CV_GRAY2BGR);

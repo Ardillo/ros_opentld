@@ -2,7 +2,7 @@
 	<!-- Nodes -->
     <node name="ros_tld_gui_node" pkg="tld_gui" type="ros_tld_gui_node"
         output="screen">	
-        <remap from="image_rgb" to="/camera/image_raw"/>
+        <remap from="image_rgb" to="/ardrone/image_raw"/>
         <remap from="tracked_object" to="tld_tracked_object"/>
         <remap from="fps_tracker" to="tld_fps"/>
     </node>
