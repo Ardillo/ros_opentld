@@ -122,8 +122,8 @@ void BaseFrame::image_received_callback(const sensor_msgs::ImageConstPtr & msg)
 		try
 		{
 			if (enc::isColor(msg->encoding))
-				cv_ptr = cv_bridge::toCvShare(msg, enc::RGB8); //edited by Ardillo
 				//cv_ptr = cv_bridge::toCvShare(msg, enc::BGR8); //Original
+				cv_ptr = cv_bridge::toCvShare(msg, enc::RGB8); //edited by Ardillo
 			else
 				cv_ptr = cv_bridge::toCvShare(msg, enc::MONO8);
 		}
@@ -134,15 +134,23 @@ void BaseFrame::image_received_callback(const sensor_msgs::ImageConstPtr & msg)
 		}
 
 		QImage image;
-
-		if (enc::isColor(msg->encoding))
+		
+		try
 		{
-			image = QImage((const unsigned char*)(cv_ptr->image.data),cv_ptr->image.cols,cv_ptr->image.rows,QImage::Format_RGB888);
-			//image.rgbSwapped(); //commented by Ardillo
+			if (enc::isColor(msg->encoding))
+			{
+				image = QImage((const unsigned char*)(cv_ptr->image.data),cv_ptr->image.cols,cv_ptr->image.rows,QImage::Format_RGB888);
+				//image.rgbSwapped(); //commented by Ardillo
+			}
+			else
+			{
+				image = QImage((const unsigned char*)(cv_ptr->image.data),cv_ptr->image.cols,cv_ptr->image.rows,QImage::Format_Indexed8);
+			}
 		}
-		else
+		catch (cv_bridge::Exception& e)
 		{
-			image = QImage((const unsigned char*)(cv_ptr->image.data),cv_ptr->image.cols,cv_ptr->image.rows,QImage::Format_Indexed8);
+			ROS_ERROR("cv_bridge exception2: %s", e.what());
+			return;
 		}
 
 		emit sig_image_received(image);

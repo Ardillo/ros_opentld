@@ -118,11 +118,12 @@ void Main::imageReceivedCallback(const sensor_msgs::ImageConstPtr & msg) {
 
 	try {
 		if (enc::isColor(msg->encoding))
-			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::RGB8); // edited by Ardillo
-			//img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::BGR8); //Original
+			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::BGR8); //Original
+			//img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::RGB8); // edited by Ardillo
 		else {
 			img_buffer_ptr = cv_bridge::toCvCopy(msg, enc::MONO8);
-			cv::cvtColor(img_buffer_ptr->image, img_buffer_ptr->image, CV_GRAY2BGR);
+			cv::cvtColor(img_buffer_ptr->image, img_buffer_ptr->image, CV_GRAY2BGR); //Original
+			//cv::cvtColor(img_buffer_ptr->image, img_buffer_ptr->image, CV_GRAY2RGB); // edited by Ardillo
 		}
 	} catch (cv_bridge::Exception& e) {
 		ROS_ERROR("cv_bridge exception: %s", e.what());
@@ -207,7 +208,8 @@ void Main::getLastImageFromBuffer() {
 	img_header = img_buffer_ptr->header;
 	img = img_buffer_ptr->image;
 
-	cv::cvtColor(img, gray, CV_BGR2GRAY);
+	cv::cvtColor(img, gray, CV_BGR2GRAY); // Original
+	//cv::cvtColor(img, gray, CV_RGB2GRAY); // edited by Ardillo
 		
 	img_buffer_ptr.reset();
 	mutex.unlock();
